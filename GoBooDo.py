@@ -47,7 +47,7 @@ class  GoBooDo:
 
     def resethead(self):
         try:
-            req = requests.get("https://books.google."+self.country,verify=False)
+            req = requests.get("https://google."+self.country, cookies={'CONSENT': 'YES+1'}, verify=False)
             self.head = {
                 'Host': 'books.google.'+self.country,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.00',
@@ -55,7 +55,7 @@ class  GoBooDo:
                 'Accept-Language': 'en-US,en;q=0.5',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
-                'Cookie': "NID=" + str(req.cookies['NID']),
+                'Cookie': "__Secure-ENID=" + str(req.cookies['__Secure-ENID']),
                         }
         except Exception as e:
             if 'captcha'.encode() in req.content:
